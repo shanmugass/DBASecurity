@@ -1,0 +1,49 @@
+﻿<div class="view">
+    <div class="container">
+        <form name="userSearchForm">
+            <header>
+                <h3>Search User</h3>
+            </header>
+            <br />
+            <div class="userSearchForm">
+                <div class="row">
+                    <div class="col-md-1">
+                        Title:
+                    </div>
+                    <div class="col-md-4">
+                        <table class="table table-hover table-striped table-condensed table-bordered ordersTable">
+                            <thead>
+                                <tr>
+                                    <th >Id</th>
+                                    <th >Title</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-hide="environments.length > 0" class="error">
+                                    <td colspan="4">
+                                        <div class="text-center"><strong>No environments found</strong></div>
+                                    </td>
+                                </tr>
+                                <tr data-ng-repeat="environment in environments" class="repeat-animation">
+                                    <td>
+                                        {{ environment.EnvId }}
+                                    </td>
+                                    <td>
+                                        {{ environment.EnvironmentName }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!--<select id="UserSelector" style="width: 100%;">
+                            <option ng-repeat="user in users" value="{{user.id}}">{{user.login}}</option>
+                        </select>-->
+                    </div>
+                    <!--<div class="col-md-2">
+                        <button type="submit" class="btn btn-primary" data-ng-click="searchTitles()" ng-disabled="titleSearchForm.$invalid || !titleSearchForm.$dirty">Search</button>
+                    </div>-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
