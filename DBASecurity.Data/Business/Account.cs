@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient ;
 
 namespace DBASecurity.Data.Business
 {
@@ -88,7 +89,7 @@ namespace DBASecurity.Data.Business
             }
         }
 
-        public Account GetObject(DataRow dr)
+        public Account GetObject(SqlDataReader dr)
         {
             Account newObject = new Account();
             newObject.AccountId = (int)dr["AccountId"];

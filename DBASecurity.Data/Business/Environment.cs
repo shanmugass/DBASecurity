@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient ;
 
 namespace DBASecurity.Data.Business
 {
@@ -40,9 +41,14 @@ namespace DBASecurity.Data.Business
             }
         }
 
-        public Environment GetObject(DataRow dr) {
+        public Environment GetObject(DataRow  dr)
+        {
+            return null;
+        }
+        public Environment GetObject(SqlDataReader dr)
+        {
             Environment newObject = new Environment();
-            newObject.EnvId=(int)dr["EnvId"];
+            newObject.EnvId = (int)dr["EnvId"];
             newObject.EnvironmentName = dr["Environment"].ToString();
             return newObject;
         }

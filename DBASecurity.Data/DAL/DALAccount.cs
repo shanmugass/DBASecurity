@@ -22,12 +22,18 @@ namespace DBASecurity.Data.DAL
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@EnvId", EnvId));
             cmd.Parameters.Add(new SqlParameter("@AccountName", AccountName));
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            foreach (DataRow dr in ds.Tables[0].Rows )
+            try
             {
-                accounts.Add(Business.Account.Instant.GetObject(dr));
+                cons.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    accounts.Add(Business.Account.Instant.GetObject(dr));
+                }
+            }
+            finally
+            {
+                cons.Close();
             }
             return accounts;
         }

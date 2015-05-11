@@ -20,12 +20,18 @@ namespace DBASecurity.Data.DAL
             Collection<Business.Environment> environments = new Collection<Business.Environment>();
             SqlCommand cmd = new SqlCommand("getEnvironments",  cons);
             cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            foreach (DataRow dr in ds.Tables[0].Rows )
+            try
             {
-                environments.Add(Business.Environment.Instant.GetObject(dr));
+                cons.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    environments.Add(Business.Environment.Instant.GetObject(dr));
+                }
+            }
+            finally
+            {
+                cons.Close();
             }
             return environments;
         }
