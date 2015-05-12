@@ -1,17 +1,24 @@
 ﻿(function () {
-    var app = angular.module("SearchUserApp", []);
-    app.controller("SearchUserController", function ($scope, $http) {
 
-        $scope.orderBy = 'AccountName';
-        $scope.txtAccountName = '';
+    var injectParams = ['$scope', '$http'];
 
-        $http.get('/api/Environment').
-          success(function (data, status, headers, config) {
-              $scope.environments = data;
-          }).
-          error(function (data, status, headers, config) {
-              alert("error : " + data.error);
-          });
+    var searchController = function ($scope, $http) {
+
+
+        init();
+
+        function init() {
+            $scope.orderBy = 'AccountName';
+            $scope.txtAccountName = '';
+
+            $http.get('/api/Environment').
+              success(function (data, status, headers, config) {
+                  $scope.environments = data;
+              }).
+              error(function (data, status, headers, config) {
+                  alert("error : " + data.error);
+              });
+        };
 
         $scope.setOrder = function (orderColumn) {
             $scope.orderBy = orderColumn;
@@ -27,5 +34,10 @@
                   alert("error : " + data.error);
               });
         }
-    });
+    };
+
+    searchController.$inject = injectParams;
+
+    angular.module('DBASecurityApp').controller('searchController', searchController);
+
 }());

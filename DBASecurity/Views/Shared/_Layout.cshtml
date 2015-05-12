@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html>
+<html data-ng-app="DBASecurityApp">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DBA Security - @ViewBag.Title</title>
+    <title>DBA Security</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -14,13 +14,13 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                    
                 </button>
-                @Html.ActionLink("DBA Security", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="/" class="navbar-brand">DBA Security</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Search Account", "Index", "SearchAccount")</li>
+                    <li> <a href="#/searchAccount">Search Account</a></li>
                 </ul>
             </div>
         </div>
@@ -35,6 +35,11 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular-animate.min.js"></script>
+    <script src="~/Scripts/angular-ui-bootstrap.js"></script>
+    <script src="~/app/DBASecurityApp/app.js"></script>
+    <script src="~/app/DBASecurityApp/controllers/searchAccountController.js"></script>
 </body>
 </html>
